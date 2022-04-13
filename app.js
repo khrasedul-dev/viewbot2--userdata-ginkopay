@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://rasedul20:rasedul20@telegramproject.b9su4.mongod
 
 const newSchema = new mongoose.Schema({
     
-    userId : {
+    userId: {
         type: Number
     },
     username: {
@@ -17,14 +17,11 @@ const newSchema = new mongoose.Schema({
     name: {
         type: String
     },
-    email: {
-        type: String
+    ref_by: {
+        type: Number
     },
-    crypto: {
-        type: String
-    },
-    wallet: {
-        type: String
+    ref_count: {
+        type: Number
     },
     created_at: {
         type: Date,
@@ -34,7 +31,7 @@ const newSchema = new mongoose.Schema({
 
 },{versionKey: false})
 
-const User = mongoose.model('withdrawl_request_list',newSchema)
+const User = mongoose.model('bot_user_list',newSchema)
 
 const app = express();
 
@@ -48,9 +45,8 @@ app.get("/",async (req,res)=>{
                 <td>${data.userId}<td/>
                 <td>${data.userName || 'No Username'}<td/>
                 <td>${data.name}<td/>
-                <td>${data.email}<td/>
-                <td>${data.crypto}<td/>
-                <td>${data.wallet}<td/>
+                <td>${data.ref_by}<td/>
+                <td>${data.ref_count}<td/>
                 <td>${data.created_at}<td/>
             </tr>`
         })
@@ -93,7 +89,7 @@ app.get("/",async (req,res)=>{
     </head>
     <body>
     
-    <h1 >Withdraw Information</h1>
+    <h1 >User Information</h1>
     <br><br><br><br>
     
     <table id="customers">
@@ -101,9 +97,8 @@ app.get("/",async (req,res)=>{
     <th>User Id<th/>
     <th>User Name<th/>
     <th>Name<th/>
-    <th>Email<th/>
-    <th>Crypto<th/>
-    <th>Wallet<th/>
+    <th>Referr By<th/>
+    <th>Referral Count<th/>
     <th>Join Date<th/>
     </tr>
 ${htdata}
